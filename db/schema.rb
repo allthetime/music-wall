@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321144528) do
+ActiveRecord::Schema.define(version: 20140922203516) do
+
+  create_table "songs", force: true do |t|
+    t.string   "title"
+    t.string   "author"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "songs", ["user_id"], name: "index_songs_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string "name"
-    t.string "email"
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -1,0 +1,20 @@
+<% @songs.each do |song| %>
+
+  <a href="/<%= song.id %>">
+    <h2><%= song.title %></h2>
+  </a>
+
+  <h3>by <%= song.author %></h3>
+  
+    <% if song.user_id? %>
+      <h5>posted by: <%= @user.name %></h5>
+    <% end %>
+
+  <% unless song.url.blank? %>
+    <a href="<%= song.url %>" target="_blank">
+      <button class="youtube">
+      </button>
+    </a>
+  <% end %>
+
+<% end %>

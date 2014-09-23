@@ -10,6 +10,7 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
+gem 'digest'
 
 group :development, :test do
   gem 'pry'

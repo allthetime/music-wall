@@ -1,0 +1,10 @@
+<h2><%= @song.title %></h2>
+<h3><%= @song.author %></h3>
+<h4><%= @song.url %></h4>
+
+<% if @song.user_id? %>
+  <h4>belongs to <%= users.find(@song.user_id).name %></h4>
+<% end %>
+
+
+

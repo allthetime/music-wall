@@ -1,1 +1,39 @@
-<h1>Home Page</h1>
+<% unless current_user == nil %>
+  Welcome, <%= current_user.name %>!
+  <br>
+  <form action="/logout" method="post">
+    <input type="submit" value="logout" />
+  </form>
+<% else %>
+  <form method="post" action="/login">
+    <span title="UserName">
+      <input type="text" name="name"/>
+    </span>
+    <span title="PassWord">
+      <input type="password" name="password"/>
+    </span>
+    <input type="submit" value="login"/>
+  </form>
+<% end %>
+
+<% @songs.each do |song| %>
+
+  <a href="/<%= song.id %>">
+    <h2><%= song.title %></h2>
+  </a>
+
+  <h3>by <%= song.author %></h3>
+  
+    <% if song.user_id? %>
+      <h5>posted by: <%= users.find(song.user_id).name %></h5>
+    <% end %>
+
+  <% unless song.url.blank? %>
+    <a href="<%= song.url %>" target="_blank">
+      <button class="youtube">
+      </button>
+    </a>
+  <% end %>
+
+<% end %>
+

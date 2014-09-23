@@ -1,0 +1,21 @@
+<% unless current_user == nil %>
+  Add a song <%= current_user.name %>!
+<% end %>
+
+<form action="/" method="post">
+
+  <span title="Title">
+    <input type="text" name="title"/>
+  </span>
+
+  <span title="Author">
+    <input type="text" name="author"/>
+  </span>
+
+  <span title="YouTube">
+    <input type="text" name="url"/>
+  </span>
+
+  <input type="submit"/>
+
+</form>
