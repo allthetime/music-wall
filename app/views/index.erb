@@ -9,7 +9,7 @@
       </form>
       
       <span><%= Vote.all.where(song_id: song.id).count %></span>
-      
+
       <form method="post" action="/unlike">
         <input type="text" name="id" value="<%= song.id %>" style="display:none;">
         <input type="image" class="downvote" alt="Submit button"><br>
@@ -17,28 +17,33 @@
 
     </div>
 
+    
     <div class="track">
+      <h3>   <span class="glyphicon glyphicon-music"></span>
       <a href="/<%= song.id %>">
         <%= song.title %>
-      </a>
+      </a></h3>
 
-      by <%= song.author %>
+      &nbsp;&nbsp;<h4> <%= song.author %></h4>
       
-      <!--
+      
       <% unless song.url.blank? %>
+      <h3>
         <a href="<%= song.url %>" target="_blank">
-          <button class="youtube">
-          </button>
+            <span class="glyphicon glyphicon-facetime-video"></span>
         </a>
-      <% end %>-->
+        </h3>
+      <% end %>
 
 
-
+    <!--
 
       <br>
       <% if song.user_id? %>
         posted by: <%= users.find(song.user_id).name %>
       <% end %>
+
+      -->
 
     </div>
   </div>

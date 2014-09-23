@@ -11,6 +11,8 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/stylesheets/application.css">
+  <link rel="stylesheet" href="/stylesheets/glypicons.css">
+
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
@@ -19,10 +21,13 @@
 </head>
 <body>
 
+  <%= yield %>
+
+
+<header>
   <% unless current_user == nil %>
-    Welcome, <%= current_user.name %>!
-    <br>
     <form action="/logout" method="post">
+        <h4>Logged in as <%= current_user.name %></h4>
       <input type="submit" value="logout" />
     </form>
   <% else %>
@@ -37,7 +42,10 @@
     </form>
   <% end %>
 
-  <%= yield %>
+<span class="glyphicon glyphicon-music"></span>
+
+  </header>
+
 
 </body>
 </html>

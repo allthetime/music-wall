@@ -1,10 +1,27 @@
-body {
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+html, body {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  text-align: center; }
+
+a {
+  text-decoration: none;
+  color: #222; }
+  a:hover {
+    color: black; }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1em;
+  font-weight: 500;
+  margin: 0; }
 
 .youtube {
   background-image: url(http://cdn.churchm.ag/wp-content/uploads/2013/08/you-tube-8bit.png);
@@ -24,7 +41,7 @@ form > span {
   height: 0;
   border-style: solid;
   border-width: 0 8.5px 15px 8.5px;
-  border-color: transparent transparent #8f8f8f transparent;
+  border-color: transparent transparent #000000 transparent;
   vertical-align: top;
   display: inline-block; }
 
@@ -33,7 +50,7 @@ form > span {
   height: 0;
   border-style: solid;
   border-width: 15px 8.5px 0 8.5px;
-  border-color: #8f8f8f transparent transparent transparent;
+  border-color: #000000 transparent transparent transparent;
   vertical-align: bottom;
   display: inline-block; }
 
@@ -42,7 +59,7 @@ body {
 
 .votes {
   height: 50px;
-  width: 50px;
+  width: 40px;
   line-height: 25px;
   display: inline-block;
   padding-left: 10px; }
@@ -55,16 +72,50 @@ body {
   line-height: 25px;
   width: 300px;
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  position: relative; }
+  .track .glyphicon-facetime-video {
+    position: absolute;
+    right: 0;
+    top: 0; }
+    .track .glyphicon-facetime-video:hover {
+      color: #333; }
+  .track h3 {
+    margin-top: 5px; }
+  .track h4 {
+    margin-top: -20px; }
 
 .post {
   font-size: 1.5em;
-  width: 600px;
   line-height: 50px;
   height: 50px;
-  border: 1px solid black;
+  border: 1px solid #444;
   border-radius: 2px;
-  background-color: #126ea4;
-  padding: 10px; }
+  background-color: #12aee4;
+  padding: 10px;
+  text-align: left;
+  display: inline-block;
+  margin: 5px; }
+  .post:nth-child(1) {
+    margin-top: 100px; }
+
+.post:hover {
+  background-color: #129ee4;
+  box-shadow: inset 0 0px 10px #777; }
+
+header {
+  text-align: left;
+  background: #00FA9E;
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: 100%; }
+  header form {
+    margin: 10px; }
+  header span {
+    position: absolute;
+    right: -50%;
+    transform: translate(-50%, -60%);
+    font-size: 50px; }
 
 /*# sourceMappingURL=application.css.map */

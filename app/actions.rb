@@ -13,8 +13,6 @@ helpers do
 end
 
 get '/' do
-  @users = User.all
-  @songs = Song.all
   erb :index
 end
 
@@ -84,17 +82,15 @@ get '/users/:name' do
 end
 
 post '/like' do
+  return erb :index if current_user.nil?
   vote = Vote.new(
     user_id: current_user.id,
     song_id: params[:id]
   )
-  if !(current_user.votes.to_a.include? Vote.find_by(song_id: params[:id],user_id:current_user.id)) 
-    vote.save
+  if vote.save
     redirect '/'
-  elsif current_user.nil?
-    erb :index
   else
-    erb :index
+    redirect '/'
   end
 end
 
