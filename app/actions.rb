@@ -5,7 +5,10 @@ helpers do
     @current_user = User.find(session[:user_id]) if session[:user_id]
   end
   def users
-    @user = User.all
+    @users = User.all
+  end
+  def songs
+    @songs = Song.all
   end
 end
 
@@ -20,7 +23,7 @@ get '/new' do
   erb :new
 end
 
-post '/' do
+post '/new' do
   @song = Song.new(
     title: params[:title],
     author: params[:author],
@@ -60,7 +63,7 @@ post '/login' do
     session[:user_id] = User.find_by(name: params[:name])
     redirect '/'
   else
-    redirect '/'
+    erb :index
   end 
 end
 
@@ -78,6 +81,14 @@ get '/users/:name' do
   @user = User.find_by(name: params[:name])
   @songs = Song.where(user_id: @user.id)
   erb :'users/index'
+end
+
+post '/like' do
+  vote = Vote.new{
+    user_id: current_user.id,
+    song_id: params[:id]
+  }  
+  if Vote.find_by(track_id: ) && Vote.find_by(user_id: )
 end
 
 

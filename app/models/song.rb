@@ -5,5 +5,6 @@ class Song < ActiveRecord::Base
                       :on => :create, 
                       :multiline => true
 
-  belongs_to :user                      
+  belongs_to :user         
+  has_many :votes             
 end

@@ -1,39 +1,51 @@
-<% unless current_user == nil %>
-  Welcome, <%= current_user.name %>!
+<% songs.each do |song| %>
+
+  <div class="post">
+    <div class="votes">
+
+      <form method="post" action="/like">
+        <input type="text" name="id" value="<%= song.id %>" style="display:none;">
+        <input type="image" class="upvote" alt="Submit button"><br>
+      </form>
+      
+      <span>6</span>
+ <% #Vote.all.where(song_id: song.id).count %>
+      
+      <form method="post" action="/unlike">
+        <input type="text" name="id" value="<%= song.id %>" style="display:none;">
+        <input type="image" class="downvote" alt="Submit button"><br>
+      </form>
+
+    </div>
+
+    <div class="track">
+      <a href="/<%= song.id %>">
+        <%= song.title %>
+      </a>
+
+      by <%= song.author %>
+      
+      <!--
+      <% unless song.url.blank? %>
+        <a href="<%= song.url %>" target="_blank">
+          <button class="youtube">
+          </button>
+        </a>
+      <% end %>-->
+
+
+
+
+      <br>
+      <% if song.user_id? %>
+        posted by: <%= users.find(song.user_id).name %>
+      <% end %>
+
+    </div>
+  </div>
   <br>
-  <form action="/logout" method="post">
-    <input type="submit" value="logout" />
-  </form>
-<% else %>
-  <form method="post" action="/login">
-    <span title="UserName">
-      <input type="text" name="name"/>
-    </span>
-    <span title="PassWord">
-      <input type="password" name="password"/>
-    </span>
-    <input type="submit" value="login"/>
-  </form>
-<% end %>
 
-<% @songs.each do |song| %>
 
-  <a href="/<%= song.id %>">
-    <h2><%= song.title %></h2>
-  </a>
-
-  <h3>by <%= song.author %></h3>
-  
-    <% if song.user_id? %>
-      <h5>posted by: <%= users.find(song.user_id).name %></h5>
-    <% end %>
-
-  <% unless song.url.blank? %>
-    <a href="<%= song.url %>" target="_blank">
-      <button class="youtube">
-      </button>
-    </a>
-  <% end %>
 
 <% end %>
 
