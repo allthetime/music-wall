@@ -72,6 +72,7 @@ end
 
 get '/:id' do
   @song = Song.find(params[:id])
+  @reivews = Review.where(song_id: params[:id])
   erb :song
 end
 
@@ -106,5 +107,18 @@ post '/unlike' do
   end
 end
 
+post '/review' do
+  @review = Review.new(
+    user_id: current_user.id,
+    song_id: params[:song_id],
+    review: params[:review],
+    rating: params[:rating].to_i
+  )
+  if @review.save
+    redirect "/#{params[:song_id]}"
+  else
+    redirect "/#{params[:song_id]}"
+  end
+end
 
 

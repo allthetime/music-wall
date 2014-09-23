@@ -10,13 +10,15 @@ html, body {
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-  text-align: center; }
+  text-align: center;
+  background: #FFF4C7; }
 
 a {
   text-decoration: none;
   color: #222; }
   a:hover {
-    color: black; }
+    color: black;
+    text-shadow: 0 0 1px #ccc; }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1em;
@@ -65,8 +67,7 @@ body {
   padding-left: 10px; }
   .votes span {
     position: absolute;
-    margin-top: -13px;
-    margin-left: 4px; }
+    transform: translate(4px, -13px); }
 
 .track {
   line-height: 25px;
@@ -80,6 +81,10 @@ body {
     top: 0; }
     .track .glyphicon-facetime-video:hover {
       color: #333; }
+  .track .name {
+    position: absolute;
+    right: 0;
+    transform: translate(0, 35px); }
   .track h3 {
     margin-top: 5px; }
   .track h4 {
@@ -89,15 +94,14 @@ body {
   font-size: 1.5em;
   line-height: 50px;
   height: 50px;
-  border: 1px solid #444;
-  border-radius: 2px;
+  border: 1px solid #555;
+  border-radius: 3px;
   background-color: #12aee4;
   padding: 10px;
   text-align: left;
   display: inline-block;
-  margin: 5px; }
-  .post:nth-child(1) {
-    margin-top: 100px; }
+  margin: 5px;
+  box-shadow: 0px 2px 6px #888; }
 
 .post:hover {
   background-color: #129ee4;
@@ -111,11 +115,26 @@ header {
   height: 80px;
   width: 100%; }
   header form {
-    margin: 10px; }
-  header span {
+    margin: 10px;
+    position: absolute; }
+  header > span {
     position: absolute;
     right: -50%;
-    transform: translate(-50%, -60%);
-    font-size: 50px; }
+    transform: translate(-50%, 25%);
+    font-size: 50px;
+    cursor: crosshair; }
+
+input[type="submit"] {
+  background-color: #12aee4;
+  border: 1px solid #555;
+  border-radius: 3px; }
+
+input[type="text"], input[type="password"] {
+  backgrond: #eee;
+  border: 1px solid #555;
+  border-radius: 3px; }
+
+#content {
+  margin-top: 100px; }
 
 /*# sourceMappingURL=application.css.map */

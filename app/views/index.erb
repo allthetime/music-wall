@@ -1,4 +1,4 @@
-<% songs.each do |song| %>
+<% songs.sort_by{|x| x.votes.count}.reverse.each do |song| %>
 
   <div class="post">
     <div class="votes">
@@ -19,6 +19,13 @@
 
     
     <div class="track">
+
+    <div class="name">
+    <% if song.user_id? %>
+       <a href="/users/<%= users.find(song.user_id).name %>"><%= users.find(song.user_id).name %></a>
+    <% end %>
+    </div>
+
       <h3>   <span class="glyphicon glyphicon-music"></span>
       <a href="/<%= song.id %>">
         <%= song.title %>
@@ -36,14 +43,10 @@
       <% end %>
 
 
-    <!--
 
       <br>
-      <% if song.user_id? %>
-        posted by: <%= users.find(song.user_id).name %>
-      <% end %>
+  
 
-      -->
 
     </div>
   </div>

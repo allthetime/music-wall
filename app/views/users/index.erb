@@ -1,20 +1,56 @@
-<% @songs.each do |song| %>
+<h1> <%= users.find(@songs[0].user_id).name %>'s songs</h1><br>
 
-  <a href="/<%= song.id %>">
-    <h2><%= song.title %></h2>
-  </a>
+<% @songs.sort_by{|x| x.votes.count}.reverse.each do |song| %>
 
-  <h3>by <%= song.author %></h3>
-  
-    <% if song.user_id? %>
-      <h5>posted by: <%= @user.name %></h5>
-    <% end %>
+  <div class="post">
+    <div class="votes">
 
-  <% unless song.url.blank? %>
-    <a href="<%= song.url %>" target="_blank">
-      <button class="youtube">
-      </button>
-    </a>
-  <% end %>
+      <form method="post" action="/like">
+        <input type="text" name="id" value="<%= song.id %>" style="display:none;">
+        <input type="image" class="upvote" alt="Submit button"><br>
+      </form>
+      
+      <span><%= Vote.all.where(song_id: song.id).count %></span>
+
+      <form method="post" action="/unlike">
+        <input type="text" name="id" value="<%= song.id %>" style="display:none;">
+        <input type="image" class="downvote" alt="Submit button"><br>
+      </form>
+
+    </div>
+
+    
+    <div class="track">
+      <h3>   <span class="glyphicon glyphicon-music"></span>
+      <a href="/<%= song.id %>">
+        <%= song.title %>
+      </a></h3>
+
+      &nbsp;&nbsp;<h4> <%= song.author %></h4>
+      
+      
+      <% unless song.url.blank? %>
+      <h3>
+        <a href="<%= song.url %>" target="_blank">
+            <span class="glyphicon glyphicon-facetime-video"></span>
+        </a>
+        </h3>
+      <% end %>
+
+
+    <!--
+
+      <br>
+      <% if song.user_id? %>
+        posted by: <%= users.find(song.user_id).name %>
+      <% end %>
+
+      -->
+
+    </div>
+  </div>
+  <br>
+
+
 
 <% end %>

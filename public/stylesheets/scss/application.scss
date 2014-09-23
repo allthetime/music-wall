@@ -16,6 +16,7 @@ html,body{
   padding:0;
   @include all(box-sizing,border-box);
   text-align: center;
+  background: #FFF4C7;
 }
 
 a{
@@ -24,6 +25,7 @@ a{
 
   &:hover{
     color:black;
+    text-shadow: 0 0 1px #ccc;
   }
 }
 
@@ -84,8 +86,9 @@ body{
   
   span{
     position:absolute;
-    margin-top: -13px;
-    margin-left: 4px;
+    // margin-top: -13px;
+    // margin-left: 4px;
+    transform:translate(4px,-13px);
   }
 }
 
@@ -104,7 +107,12 @@ body{
     &:hover{
       color:#333;
     }
+  }
 
+  .name{
+    position:absolute;
+    right:0;
+    transform:translate(0,35px)
   }
     
   h3{
@@ -116,22 +124,23 @@ body{
 
 }
 
+@mixin borderz {
+  border:1px solid #555;
+  border-radius: 3px;
+}
+
 .post{
   font-size:1.5em;
  
   line-height: 50px;
   height:50px;
-  border:1px solid #444;
-  border-radius: 2px;
+  @include borderz;
   background-color: #12aee4;
   padding:10px;
   text-align: left;
   display:inline-block;
   margin:5px;
-
-  &:nth-child(1){
-    margin-top:100px;
-  }
+  box-shadow:0px 2px 6px #888;
 
 }
 
@@ -150,13 +159,32 @@ header{
 
   form{
     margin:10px;
+    position:absolute;
   }
 
-  span{
+  & > span {
     position:absolute;
     right:-50%;
-    transform:translate(-50%,-60%);
+    transform:translate(-50%, 25%);
     font-size:50px;
+    cursor: crosshair;
   }
 
+
+}
+
+input[type="submit"]{
+  background-color: #12aee4;
+  @include borderz;
+
+}
+
+input[type="text"],input[type="password"]{
+  backgrond: #eee;
+  @include borderz;
+
+}
+
+#content{
+    margin-top:100px;
 }

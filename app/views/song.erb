@@ -1,9 +1,69 @@
-<h2><%= @song.title %></h2>
-<h3><%= @song.author %></h3>
-<h4><%= @song.url %></h4>
+<div class="post">
+    <div class="votes">
 
-<% if @song.user_id? %>
-  <h4>belongs to <%= users.find(@song.user_id).name %></h4>
+      <form method="post" action="/like">
+        <input type="text" name="id" value="<%= @song.id %>" style="display:none;">
+        <input type="image" class="upvote" alt="Submit button"><br>
+      </form>
+      
+      <span><%= Vote.all.where(song_id: @song.id).count %></span>
+
+      <form method="post" action="/unlike">
+        <input type="text" name="id" value="<%= @song.id %>" style="display:none;">
+        <input type="image" class="downvote" alt="Submit button"><br>
+      </form>
+
+    </div>
+
+    
+    <div class="track">
+
+    <div class="name">
+    <% if @song.user_id? %>
+       <a href="/users/<%= users.find(@song.user_id).name %>"><%= users.find(@song.user_id).name %></a>
+    <% end %>
+    </div>
+
+      <h3>   <span class="glyphicon glyphicon-music"></span>
+      <a href="/<%= @song.id %>">
+        <%= @song.title %>
+      </a></h3>
+
+      &nbsp;&nbsp;<h4> <%= @song.author %></h4>
+      
+      
+      <% unless @song.url.blank? %>
+      <h3>
+        <a href="<%= @song.url %>" target="_blank">
+            <span class="glyphicon glyphicon-facetime-video"></span>
+        </a>
+        </h3>
+      <% end %>
+      <br>
+  
+
+
+    </div>
+  </div>
+  <br>
+
+
+
+  <form action="/review" method="post">
+        <input type="text" name="song_id" value="<%= @song.id %>" style="display:none;">
+        <input type="text" name="review">
+        <input type="text" name="rating">
+        <input type="submit">
+  </form>
+
+
+<% unless @reviews.nil? %>
+  <% @reviews.sort_by{|x| x.created_at }.reverse.each do |review| %>
+
+  <h1>    <%= review.review %>
+    <%= review.rating %>
+    </h1>
+  <% end %>
 <% end %>
 
 

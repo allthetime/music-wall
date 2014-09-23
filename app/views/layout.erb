@@ -21,10 +21,14 @@
 </head>
 <body>
 
-  <%= yield %>
 
+<div id="content">
+  <%= yield %>
+</div>
 
 <header>
+
+
   <% unless current_user == nil %>
     <form action="/logout" method="post">
         <h4>Logged in as <%= current_user.name %></h4>
@@ -32,17 +36,19 @@
     </form>
   <% else %>
     <form method="post" action="/login">
-      <span title="UserName">
+      <span title="User">
         <input type="text" name="name"/>
       </span>
-      <span title="PassWord">
+      <span title="Pass">
         <input type="password" name="password"/>
       </span>
       <input type="submit" value="login"/>
     </form>
   <% end %>
 
-<span class="glyphicon glyphicon-music"></span>
+ 
+  <span class="glyphicon glyphicon-music" onclick="window.open('/','_top');"></span>
+ 
 
   </header>
 
