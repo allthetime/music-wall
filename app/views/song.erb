@@ -48,23 +48,54 @@
   <br>
 
 
-
+  <% unless current_user.nil? %>
   <form action="/review" method="post">
         <input type="text" name="song_id" value="<%= @song.id %>" style="display:none;">
-        <input type="text" name="review">
-        <input type="text" name="rating">
-        <input type="submit">
+        <textarea rows="4" class="comment" type="text" name="review"></textarea><br>
+        <div id="rate" name="raty"></div><br>
+        <input type="number" name="rating" style="display:none;" id="rating">
+        <input type="submit" style="margin-bottom:30px;">
   </form>
-
-
-<% unless @reviews.nil? %>
-  <% @reviews.sort_by{|x| x.created_at }.reverse.each do |review| %>
-
-  <h1>    <%= review.review %>
-    <%= review.rating %>
-    </h1>
   <% end %>
-<% end %>
 
+
+  <% unless @reviews.nil? %>
+    <% @reviews.sort_by{|x| x.created_at }.reverse.each do |review| %>
+    <br><br>
+    <div class="review">
+      <h3><%= users.find_by(id:review.user_id).name%></h3>
+      <h2><%= review.review %></h2><br>
+      <div class="rating" data-score="<%= review.rating %>"></div>
+    </div>  
+    <% end %>
+  <% end %>
+
+
+
+<script src="../javascript/application.js"></script>
+<script>
+
+$('#rate').raty({
+  click: function(score, evt) {
+    $('#rating').val(score)
+  }});
+
+
+
+
+  $.each($('.rating'), function( index, value ) {  
+    $(value).raty({ 
+      readOnly: true, 
+      number: 5,
+      score: $(value).attr('data-score')  
+    });
+  });
+
+
+
+
+
+
+</script>
 
 

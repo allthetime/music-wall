@@ -16,7 +16,7 @@ html,body{
   padding:0;
   @include all(box-sizing,border-box);
   text-align: center;
-  background: #FFF4C7;
+  background: #FFFCF0;
 }
 
 a{
@@ -188,3 +188,36 @@ input[type="text"],input[type="password"]{
 #content{
     margin-top:100px;
 }
+
+.comment{
+  margin-top:50px;
+  width:370px;
+  @include borderz;
+}
+
+input[type="number"]{
+  width:20px;
+}
+
+#rate{
+  display:inline-block;
+  margin:5px;
+}
+
+.rating{
+  display:inline-block;
+  width:120px !important;
+  transform:translate(260px,13px);
+}
+
+.review{
+  text-align: left;
+  display:inline-block;
+  box-shadow: 1px 3px 5px #aaa;
+  border-radius:2px;
+  width:340px;
+  padding:20px;
+  background-color: #FCFFD5;
+  margin-top: -10px;
+}
+

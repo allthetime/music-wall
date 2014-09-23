@@ -72,7 +72,7 @@ end
 
 get '/:id' do
   @song = Song.find(params[:id])
-  @reivews = Review.where(song_id: params[:id])
+  @reviews = Review.where(song_id: params[:id])
   erb :song
 end
 
