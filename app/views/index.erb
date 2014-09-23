@@ -8,8 +8,7 @@
         <input type="image" class="upvote" alt="Submit button"><br>
       </form>
       
-      <span>6</span>
- <% #Vote.all.where(song_id: song.id).count %>
+      <span><%= Vote.all.where(song_id: song.id).count %></span>
       
       <form method="post" action="/unlike">
         <input type="text" name="id" value="<%= song.id %>" style="display:none;">

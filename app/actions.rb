@@ -84,11 +84,31 @@ get '/users/:name' do
 end
 
 post '/like' do
-  vote = Vote.new{
+  vote = Vote.new(
     user_id: current_user.id,
     song_id: params[:id]
-  }  
-  if Vote.find_by(track_id: ) && Vote.find_by(user_id: )
+  )
+  if !(current_user.votes.to_a.include? Vote.find_by(song_id: params[:id],user_id:current_user.id)) 
+    vote.save
+    redirect '/'
+  elsif current_user.nil?
+    erb :index
+  else
+    erb :index
+  end
 end
+
+
+post '/unlike' do
+  if current_user.votes.to_a.include? Vote.find_by(song_id: params[:id],user_id:current_user.id)
+    Vote.find_by(song_id: params[:id],user_id:current_user.id).destroy
+    redirect '/'
+  elsif current_user.nil?
+    erb :index
+  else
+    erb :index
+  end
+end
+
 
 

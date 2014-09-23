@@ -62,6 +62,9 @@ body {
   width: 600px;
   line-height: 50px;
   height: 50px;
-  border: 1px solid black; }
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: #126ea4;
+  padding: 10px; }
 
 /*# sourceMappingURL=application.css.map */
